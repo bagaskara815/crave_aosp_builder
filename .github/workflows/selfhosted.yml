@@ -406,6 +406,13 @@ jobs:
         crave ssh -- "bash /opt/crave/telegram/upload.sh '${{ github.event.inputs.DEVICE_NAME }}' '${{ secrets.EXTRA_FILES }}'"
       continue-on-error: true
 
+      # Upload to Gdrive
+    - name: Upload Using Gdrive
+      run: |
+        cd $PROJECTFOLDER
+        crave ssh -- "/opt/crave/gdrive files upload --parent 1MdJx4qjOmyxACxmIMFeqogVBm4Ti6APn out/target/product/vayu/DerpFest-14-*"
+      continue-on-error: true
+
       # Remove 'crave' clone
     - name: Destroy Crave Clone
       if: ${{ always() }}
